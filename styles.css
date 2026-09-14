@@ -1,0 +1,251 @@
+:root {
+  --ink: #14181f;
+  --paper: #f6f5f2;
+  --line: #dcd9d2;
+  --signal: #2f6f4f;
+  --signal-dim: #cfe3d6;
+  --muted: #6b6f76;
+  --mono: "SF Mono", "IBM Plex Mono", Consolas, monospace;
+  --sans: "Inter", -apple-system, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 48px 20px 80px;
+}
+
+.frame {
+  width: 100%;
+  max-width: 640px;
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 18px;
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01rem;
+}
+
+.status-line {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+  display: inline-block;
+  transition: background 0.3s;
+}
+
+.dot.live {
+  background: var(--signal);
+  box-shadow: 0 0 0 3px var(--signal-dim);
+}
+
+.setup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 28px;
+  background: white;
+  margin-bottom: 24px;
+}
+
+.setup p {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.setup p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+button {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  padding: 11px 18px;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    background 0.15s ease;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--ink);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2a2f38;
+}
+
+.btn-primary:disabled {
+  background: #b9bcc2;
+  cursor: default;
+  transform: none;
+}
+
+.folder-tag {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--signal);
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--muted);
+  font-size: 14px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+}
+
+.empty-state .glyph {
+  font-size: 28px;
+  margin-bottom: 10px;
+  opacity: 0.5;
+}
+
+.file-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+  animation: arrive 0.4s ease;
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.file-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: var(--signal-dim);
+  color: var(--signal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-family: var(--mono);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.file-meta {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-name {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.file-sub {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.file-actions a {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 10px;
+  white-space: nowrap;
+}
+
+.file-actions a:hover {
+  border-color: var(--ink);
+}
+
+.log {
+  margin-top: 28px;
+  font-family: var(--mono);
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.warn {
+  background: #fff7ec;
+  border: 1px solid #f0d9a8;
+  border-radius: 10px;
+  padding: 16px 18px;
+  font-size: 13px;
+  color: #7a5a12;
+  margin-bottom: 24px;
+  display: none;
+}

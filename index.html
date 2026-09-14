@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bluetooth test</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main>
+        <div class="frame">
+            <div class="setup">
+                <button class="btn-primary" id="pickFolderBtn">Выбрать папку приёма файлов</button>
+                <div class="folder-tag" id="folderTag">
+                    <span>📁</span><span id="folderName"></span>
+                </div>
+            </div>
+            <div class="feed" id="feed">
+                <div class="empty-state" id="emptyState">
+                    <p>Отправьте файл с телефона через «Поделиться → Bluetooth».</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script defer src="script.js"></script>
+</body>
+
+</html>
