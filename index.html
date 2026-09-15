@@ -6,20 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bluetooth test</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
 </head>
 
 <body>
     <main>
         <div class="frame">
-            <div class="setup">
-                <button class="btn-primary" id="pickFolderBtn">Выбрать папку приёма файлов</button>
-                <div class="folder-tag" id="folderTag">
-                    <span>📁</span><span id="folderName"></span>
+            <div id="pcView">
+                <div class="setup">
+                    <button class="btn-primary" id="pickFolderBtn">Выбрать папку приёма файлов</button>
+                    <div class="folder-tag" id="folderTag">
+                        <i class="fa-solid fa-folder-open"></i>
+                        <span id="folderName"></span>
+                    </div>
+
+                    <div class="qr-section">
+                        <p style="margin: 15px 0 10px; font-size: 13px;">Отсканируйте для передачи с iPhone</p>
+                        <div id="qrcode"></div>
+                    </div>
+                </div>
+
+                <div class="feed" id="feed">
+                    <div class="empty-state" id="emptyState">
+                        <p>Ожидание файлов через Bluetooth или QR-код</p>
+                    </div>
                 </div>
             </div>
-            <div class="feed" id="feed">
-                <div class="empty-state" id="emptyState">
-                    <p>Отправьте файл с телефона через «Поделиться → Bluetooth».</p>
+
+            <div id="mobileView" style="display: none;">
+                <div class="setup">
+                    <p><strong>Отправка файла на ПК</strong></p>
+                    <p id="mobileStatus" style="font-size: 12px; margin-bottom: 12px;">Подключение к ПК...</p>
+                    <input type="file" id="fileInput" style="display: none;">
+                    <button class="btn-primary" id="selectFileBtn" disabled>Выбрать файл</button>
                 </div>
             </div>
         </div>
